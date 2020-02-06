@@ -10,7 +10,7 @@ This project will analyze some general patterns and text features of English twe
 2.I will also collect some tweets that contain rumors about coronavirus. This dataset is mainly for future study of advanced text analysis and machine learning.
 
 ## Analysis
-1. Sentiment analysis of tweets that receive more likes and retweets.
+1. Sentiment analysis of a sample of tweets.
 2. Topic modelling of tweets that receive more likes and retweets.
 3. Other text analysis.   
 
