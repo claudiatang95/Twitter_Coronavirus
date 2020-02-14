@@ -11,7 +11,7 @@ falsenumber3 <- search_tweets(q = '"90,000 infected" OR "90,000 people" OR "90,0
                              include_rts = FALSE,since="2020-02-03",until="2020-02-08",n=5000)
 save(falsenumber3,file="data/falsenumber3.Rdata")
 
-falsenumber0213 <- search_tweets(q = '"90,000 infected" OR "90,000 people" OR "90,000 sick" OR "90,000 cases"', lang="en", 
+falsenumber0213 <- search_tweets(q = '"90,000 infected" OR "90,000 sick" OR "90,000 cases"', lang="en", 
                                  include_rts = FALSE,since="2020-02-08",until="2020-02-14",n=5000)
 save(falsenumber0213,file="data/falsenumber0213.Rdata")
 
