@@ -21,6 +21,12 @@ save(topusers,file="data/topusers.Rdata")
 
 # How many users among top 100 are verified
 sum(topusers$verified)
+# visualize the percentage of unverified and verified users
+topusers_count <- topusers %>% group_by(verified) %>% summarise(count=n()) 
+verified_users <- paste(topusers_count$verified,topusers_count$count,"%")
+ggplot(topusers_count,aes(x="",y=count,fill=verified_users))+geom_bar(stat="identity")+coord_polar("y",start=0)+
+  xlab("")+ylab("")
+
 # The average followers and twitter engagement of unverified and verified users among top 100 users
 topuser_mean <- topusers %>% group_by(verified) %>% summarise(mean(followers),average_engagement=mean(average_engagement)) %>% ungroup()
 
@@ -41,6 +47,12 @@ save(toptweets,file="data/toptweets.Rdata")
 
 # To see how many users are verified users
 sum(toptweets$verified)
+toptweets_count <- toptweets %>% group_by(verified) %>% summarise(count=n()) 
+# visualize the percentage of unverified and verified users
+verified_users <- paste(toptweets_count$verified,toptweets_count$count/10,"%")
+ggplot(toptweets_count,aes(x="",y=count,fill=verified_users))+geom_bar(stat="identity")+coord_polar("y",start=0)+
+  xlab("")+ylab("")
+
 # Summary statistics of twitter engagement of unverified and verified users
 toptweets_unverified <- toptweets %>% filter(verified=="FALSE")
 summary(toptweets_unverified$twitter_engagement)
