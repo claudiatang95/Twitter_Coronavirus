@@ -17,6 +17,7 @@ by_user <- data_coronavirus %>% group_by(screen_name) %>%
             verified=isTRUE(verified))%>% 
             arrange(desc(average_engagement)) %>% ungroup()
 topusers <- by_user[1:100,] 
+save(topusers,file="data/topusers.Rdata")
 
 # How many users among top 100 are verified
 sum(topusers$verified)
@@ -24,7 +25,8 @@ sum(topusers$verified)
 topuser_mean <- topusers %>% group_by(verified) %>% summarise(mean(followers),average_engagement=mean(average_engagement)) %>% ungroup()
 
 # To analyze if there is association between number of followers and popularity of tweets(i.e twitter engagement value)
-ggplot(topusers, aes(y = average_engagement, x = followers,color=verified))+geom_point()+scale_x_log10()
+ggplot(topusers, aes(y = average_engagement, x = followers,color=verified))+geom_point()+scale_x_log10()+
+  ggtitle("Popularity of tweets and number of followers")
 ##Use regression model
 m.v <- lm(average_engagement~followers,data=topusers)  
 summary(m.v)
@@ -47,7 +49,7 @@ summary(toptweets_verified$twitter_engagement)
 
 # Scatter plot of twitter engagement of unverified and verified users
 ggplot(toptweets, aes(y = twitter_engagement, x = verified,size=followers_count))+geom_point()+
-  ggtitle("Twitter engagement of unverified and verified users") 
+  ggtitle("Tweets popularity and users type") 
 
 # The average followers and twitter engagement of unverified and verified users 
 toptweets_mean <- toptweets %>% group_by(verified) %>% summarise(mean(followers_count),mean(twitter_engagement)) %>% ungroup()
