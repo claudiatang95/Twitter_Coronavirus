@@ -1,6 +1,8 @@
 library(rtweet)
 library(tidyverse)
 # rumor tweets collection 1: falsenumber----
+# tweets posted from Jan 25 to Feb 13
+# query words: "90,000 infected", "90,000 people", "90,000 sick", "90,000 cases"
 falsenumber1<- search_tweets(q = '"90,000 infected" OR "90,000 people" OR "90,000 sick" OR "90,000 cases"', lang="en", 
                        include_rts = FALSE,since="2020-01-25", until="2020-01-29",n=5000)
 save(falsenumber1,file="data/falsenumber1.Rdata")
@@ -28,13 +30,13 @@ save(falsenumber,file="data/falsenumber.Rdata")
 
 
 # rumor tweets collection 2: biowarfare and bioweapon---- 
-# keyword:biowarfare
-test7 <- search_tweets(q = "biowarfare AND coronavirus", lang="en", 
+# query words:biowarfare
+biowarfare0129 <- search_tweets(q = "biowarfare AND coronavirus", lang="en", 
                        include_rts = FALSE,since="2020-01-25", until="2020-01-29",n=5000)
-save(test7,file="data/biowarfare rumor1.Rdata")
-biowarfare <- search_tweets(q = "biowarfare AND coronavirus", lang="en", 
+save(biowarfare0129,file="data/biowarfare rumor1.Rdata")
+biowarfare0202 <- search_tweets(q = "biowarfare AND coronavirus", lang="en", 
                             include_rts = FALSE,since="2020-01-29", until="2020-02-03",n=5000)
-save(biowarfare,file="data/biowarfare_0202.Rdata")
+save(biowarfare0202,file="data/biowarfare_0202.Rdata")
 biowarfare0207 <- search_tweets(q = "biowarfare AND coronavirus", lang="en", 
                                 include_rts = FALSE,since="2020-02-03", until="2020-02-08",n=5000)
 save(biowarfare0207,file="data/biowarfare_0207.Rdata")
@@ -51,10 +53,10 @@ biowarfare <- rbind(biowarfare1,biowarfare2,biowarfare3,biowarfare4)
 biowarfare <- arrange(biowarfare,created_at)
 
 
-# keyword: bio weapon
-test <- search_tweets(q = "bio weapon AND coronavirus", lang="en", 
+# query words: bio weapon
+bioweapon0129 <- search_tweets(q = "bio weapon AND coronavirus", lang="en", 
                       include_rts = FALSE,since="2020-01-25", until="2020-01-29",n=5000)
-save(test,file="data/bioweapon.Rdata")
+save(bioweapon0129,file="data/bioweapon.Rdata")
 bioweapon <- search_tweets(q = "bio weapon AND coronavirus", lang="en", 
                            include_rts = FALSE,since="2020-01-29", until="2020-02-03",n=5000)
 save(bioweapon,file="data/bioweapon_0202.Rdata")
