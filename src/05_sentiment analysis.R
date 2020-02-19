@@ -18,11 +18,7 @@ tokens <- tokens(corpus,
 # Use NRC dictionary to analyse emotions  
 dfm_NRC<- dfm(tokens,ngrams = 1, 
               dictionary = data_dictionary_NRC) 
-emotions <- as_tibble(dfm_NRC) %>% summarise(anger=mean(anger),disgust=mean(disgust),
-                                             fear=mean(fear),sadness=mean(sadness),
-                                             anticipation=mean(anticipation),joy=mean(joy),
-                                             surprise=mean(surprise),trust=mean(trust),
-                                             negative=mean(negative),positive=mean(positive))
+
 emotions <- as_tibble(dfm_NRC) %>% summarise(anger=sum(anger),disgust=sum(disgust),
                                              fear=sum(fear),sadness=sum(sadness),
                                              anticipation=sum(anticipation),joy=sum(joy),
