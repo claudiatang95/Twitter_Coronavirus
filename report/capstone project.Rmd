@@ -109,7 +109,9 @@ The following scatter plot of top 1000 most popular tweets further confirms my p
 ![](Tweets popularity and users type.png)
 
 ## 2. What are the sources and contents of the most popular tweets?   
-![](toptweets.png)      
+![](toptweets1.png)      
+![](toptweets2.png) 
+
 The contents of top 10 popular tweets are diverse, including information, personal opinion, indirect personal experience, misinformation and humor. Most of them contain videos or pictures. Here original video means it was posted on Twitter for the first time although it may not be shot by the user himself/herself. What is unexpected is that the personal opinion tweets all expressed negative point of views towards government: distrust in mainstream media, disappointment in their governments for not taking effective actions to deal with coronavirus. Among 10 tweets, 8 are from unverified users. All 10 tweets were posted by individual accounts.    
 
 Due to limited time and skills, I didn’t classify more popular tweets. Based on top 10 tweets, I didn’t see any particular pattern that can lead the tweets to go viral. So I assume that the success of those tweets is random and unpredictable.                   
