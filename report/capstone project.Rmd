@@ -7,7 +7,7 @@ output:
    theme: spacelab
    highlight: pygments
 ---
-
+words count: 1140
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -25,7 +25,7 @@ wordcloud2(freq_words,size=0.5)
 
 # Overview of the project
 Since the middle January 2020, the outbreak of coronavirus in China has aroused the world's attention. People have shared all kinds of information about this epidemic on social media. The main goals of this project is to analyze :       
-1. Is there any association between the number of followers and popularity of the tweets? 
+1. Is there any association between the number of followers and popularity of tweets?           
 2. What are the sources and contents of the most popular tweets?         
 3. Sentiment analysis.         
 4. The basic text analysis (e.g. the most frequent words, the most frequent hashtags).
@@ -54,13 +54,13 @@ To collect tweets that contain two rumors about coronavirus:
 
 # Task review and difficulties encountered 
 ## 1. Data collection 
-I collected tweets posted every two days during this period, i.e the tweets posted on 25 Jan, 27 Jan, 29 Jan…And in order to get the latest favorite counts and retweet counts, I collected the tweets seven days after the date when they were posted. Thus I got a dataset of 261740 tweets. 
+I collected tweets posted every two days during this period, i.e the tweets posted on 25 Jan, 27 Jan, 29 Jan…And in order to get the latest favorite counts and retweet counts, I collected the tweets seven days after the date when they were posted. Thus I got a dataset of 261745 tweets. 
 
 ## 2. Data combination and sampling
 I put all the data together and drew a sample of 10% of total tweets, which is a sample of 26174 tweets. This sample is used to do the text analysis.
 
 ## 3. Rumor tweets collection
-I searched and collected rumor tweets with some keywords. Obviously, in this way my dataset contains some tweets that are not related to my topics. I need to go through them and manually delete the unrelated one when I use these data in the future. This is time-consuming and I hope in the future I can figure out a better way.
+I searched and collected rumor tweets with some keywords. Obviously, in this way my dataset contains some tweets that are not related to my topics. I need to go through them and manually delete the unrelated one when I use these data in the future. This is time-consuming and I hope in the future I can figure out a better way to collect and filter rumor tweets.
 
 ## 4. Analyze popular users and popular tweets 
 I added a new variable “twitter engagement”, which is the sum of favorite count and retweet count, to indicate the popularity of the tweets. 
@@ -68,14 +68,14 @@ First I extracted top 100 accounts whose tweets have higher average twitter enga
 Second I extracted top 1000 tweets that have higher twitter engagement values. I manually analyzed the top 10 most popular tweets.
 
 ## 5. Sentiment analysis and text analysis 
-I used quanteda package to do the text analysis. For sentiment analysis, I used NRC dictionary in quanteda.dictionaries package to analyze the emotions of sample tweets. 
+I used quanteda package to do the text analysis. I analyzed the most frequent words, hashtags and mentioned users. For sentiment analysis, I used NRC dictionary in quanteda.dictionaries package to analyze the emotions of sample tweets. 
 
 # Findings
 ## 1. Findings of statistical analysis 
-Among the top 100 accounts whose tweets have higher average twitter engagement values, 73% are unverified and only 27% are verified. It seems that the average twitter engagement value of unverified accounts is higher than that of verified accounts, but ANOVA shows that the difference is not significant at 0.05 significance level.
+Among the top 100 accounts whose tweets have higher average twitter engagement values, 73% are unverified accounts and only 27% are verified. It seems that the average twitter engagement value of unverified accounts is higher than that of verified accounts, but ANOVA shows that the difference is not significant at 0.05 significance level.
 ```{r}
 topusers <- import(here::here("data","topusers.Rdata"))
-topusers %>% group_by(verified) %>% summarise(followers=mean(followers),engagement=mean(average_engagement)) %>% ungroup()
+topusers %>% group_by(verified) %>% summarise(followers=mean(followers),twitter_engagement=mean(average_engagement)) %>% ungroup()
 anova <- aov(average_engagement~verified,data=topusers)
 summary(anova)
 ```
@@ -94,7 +94,7 @@ summary(anova2)
 m.v2 <- lm(twitter_engagement~followers_count,data=toptweets)  
 summary(m.v2)
 ```
-However, as to the percentages of unverified and verified accounts, the gap gets smaller. The unverified users account for 53.4% and verified users 46.6%.     
+However, as to the percentages of unverified and verified accounts in toptweets dataset, the gap gets smaller. The unverified users account for 53.4% and verified users 46.6%.     
 Probing into the topusers dataset, I found that the first three accounts actually don’t have a large number of followers, all below 200. 
 ```{r}
 print.data.frame(head(topusers))
@@ -104,14 +104,37 @@ And there are also accounts that even have one follower or 0 follower, but still
 print.data.frame(topusers[c(64,73),])
 ```
 Therefore, I believe that under a popular hashtag, a large number of followers is not the prerequisite for a tweet to go viral. Moreover, the verified users are not at an advantage to receive more favorites and retweets.   
-The following scatter plot of top 1000 most favorite tweets further confirms my point of view.
+The following scatter plot of top 1000 most popular tweets further confirms my point of view.
 ![](Tweets popularity and users type.png)
 
-## 2. What are the contents of the most popular tweets?   
+## 2. What are the sources and contents of the most popular tweets?   
 ![](toptweets.png)      
-The contents of top 10 popular tweets are diverse, including information, personal opinion, indirect personal experience, misinformation and humor. Most of them contain videos or pictures. Here original video means it was posted on Twitter for the first time although it may not be shot by the user himself/herself. What is unexpected is that the personal opinion tweets all expressed negative point of views towards government: distrust in mainstream media, disappointment in their governments for not taking effective actions to deal with coronavirus. 
+The contents of top 10 popular tweets are diverse, including information, personal opinion, indirect personal experience, misinformation and humor. Most of them contain videos or pictures. Here original video means it was posted on Twitter for the first time although it may not be shot by the user himself/herself. What is unexpected is that the personal opinion tweets all expressed negative point of views towards government: distrust in mainstream media, disappointment in their governments for not taking effective actions to deal with coronavirus. Among 10 tweets, 8 are from unverified users. All 10 tweets were posted by individual accounts.    
 
-Due to limited time and skills, I didn’t classify more popular tweets. Based on top 10 tweets, I didn’t see any particular pattern that can allow the tweets to go viral. So I assume that the success of the tweets with #coronavirus is random and unpredictable.                   
+Due to limited time and skills, I didn’t classify more popular tweets. Based on top 10 tweets, I didn’t see any particular pattern that can lead the tweets to go viral. So I assume that the success of those tweets is random and unpredictable.                   
+
+## 3. Findings of sentiment analysis 
+![](sentiment analysis.png)
+As expected, the most intense emotion is fear.  The second one is trust. This may be attributed to the numerous tweets that contain the words like “confirm”, “advice”, “authority” etc. However,  it is in question whether these tweets really expressed trust or actually it’s the opposite. 
+
+## 4. Findings of text analysis 
+### 1.The 50 most frequent words
+![](topwords_scatterplot.png)
+
+It shows that people are concerned about the outbreak in US and worldwide. 
+
+### 2. The 50 most frequent hashtags (#coronavirus excluded)
+![](top hashtags.png)
+
+Among these hashtags, most of them are directly related to the coronavirus outbreak event. The rest of them are countries, health, government or politicians (#ccp , #trump and # vindman). 
+
+### 3. The 20 most frequently mentioned users
+![](mentioned users.png)
+
+# What could not be achieved
+I planned to do topic modeling, but I found that it’s difficult to categorize the topics because tweets are short and all the tweets are already under the same hashtag # coronavirus. For now I don’t have time and skills to classify the contents. I hope in the future I can realize this task. 
+
+Finally, I hope this coronavirus outbreak can be controlled and pass soon. Don’t panic, don’t blame, but be careful and collaborative!
 
 
 
