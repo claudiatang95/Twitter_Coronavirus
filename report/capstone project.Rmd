@@ -1,13 +1,14 @@
 ---
 title: "Communication on social media during 2020 coronavirus outbreak"
 author: "Tang Chunmin claudiatang95@gmail.com"
-output: 
-  html_document:
-   toc: true
-   theme: spacelab
-   highlight: pygments
----
-words count: 1140
+date: "2/23/2020"
+output:
+    html_document:
+    highlight: pygments
+    theme: spacelab
+    toc: True
+---    
+word count: 1204
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -115,6 +116,7 @@ Due to limited time and skills, I didn’t classify more popular tweets. Based o
 
 ## 3. Findings of sentiment analysis 
 ![](sentiment analysis.png)
+
 As expected, the most intense emotion is fear.  The second one is trust. This may be attributed to the numerous tweets that contain the words like “confirm”, “advice”, “authority” etc. However,  it is in question whether these tweets really expressed trust or actually it’s the opposite. 
 
 ## 4. Findings of text analysis 
@@ -132,9 +134,11 @@ Among these hashtags, most of them are directly related to the coronavirus outbr
 ![](mentioned users.png)
 
 # What could not be achieved
-I planned to do topic modeling, but I found that it’s difficult to categorize the topics because tweets are short and all the tweets are already under the same hashtag # coronavirus. For now I don’t have time and skills to classify the contents. I hope in the future I can realize this task. 
+I planned to do topic modeling, but I found that it’s difficult to categorize the topics because tweets are short and all the tweets are already under the same hashtag # coronavirus. For now I don’t have time and skills to classify the contents. I hope in the future I can realize this task. And I'm also not very convinced by the results of the sentiment analysis due to the irony or other rhetoric in the tweeets.
 
-Finally, I hope this coronavirus outbreak can be controlled and pass soon. Don’t panic, don’t blame, but be careful and collaborative!
+# Conclusion
+Doing this project I learned how to collect tweets with R and how to do the basic text analysis. I'm happy that I got all these findings, but in the meantime I also felt limited, by the lack of both theoretical knowledge and technical skills.  
+Finally, let's pray that this coronavirus outbreak can be controlled and pass soon. Don’t panic, don’t blame, but be careful and cooperative!
 
 
 
