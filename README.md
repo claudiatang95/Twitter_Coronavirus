@@ -18,4 +18,4 @@ rtweet,quanteda,tidyverse,wordcloud2
 
 ## Author
 Claudia Tang
-![hashtags](/figs/hashtags.png)
+![hashtags](/figures/hashtags.png)
