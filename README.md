@@ -18,4 +18,5 @@ rtweet,quanteda,tidyverse,wordcloud2
 
 ## Author
 Claudia Tang
-![hashtags](/figures/hashtags.png)
+
+![hashtags](/figures/hashtags_wordcloud.png)
