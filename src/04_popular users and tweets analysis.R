@@ -29,7 +29,9 @@ ggplot(topusers_count,aes(x="",y=count,fill=verified_users))+geom_bar(stat="iden
 
 # The average followers and twitter engagement of unverified and verified users among top 100 users
 topuser_mean <- topusers %>% group_by(verified) %>% summarise(mean(followers),average_engagement=mean(average_engagement)) %>% ungroup()
-
+# Scatter plot of twitter engagement of unverified and verified users
+ggplot(topusers, aes(y = average_engagement, x = verified,size=followers))+geom_point()+
+  ggtitle("Tweets popularity and users type")
 # To analyze if there is association between number of followers and popularity of tweets(i.e twitter engagement value)
 ggplot(topusers, aes(y = average_engagement, x = followers,color=verified))+geom_point()+scale_x_log10()+
   ggtitle("Popularity of tweets and number of followers")
