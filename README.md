@@ -16,6 +16,9 @@ The main goals of this project is to analyze :
 ## The packages used 
 rtweet,quanteda,tidyverse,wordcloud2
 
+## Report
+Please see report here: https://github.com/claudiatang95/Twitter_Coronavirus/blob/master/report/report.pdf
+
 ## Author
 Claudia Tang
 
