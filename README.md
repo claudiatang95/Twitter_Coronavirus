@@ -1,5 +1,5 @@
 # Capstone project: Communication on social media during coronavirus outbreak in 2020
-This is the final assignment for the course Data Access of the Master Program Data Analytics for Politics, Society and Complex organizations of University of Milan.   
+This is the capstone project for the course Data Access of the Master Program Data Analytics for Politics, Society and Complex organizations of University of Milan.   
 
 ## Research idea
 Since the middle January 2020, the outbreak of coronavirus in China has aroused the world's attention. People has shared all kinds of information about this disease on social media. 
